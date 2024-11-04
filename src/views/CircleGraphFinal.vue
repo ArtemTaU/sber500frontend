@@ -28,9 +28,8 @@ const fetchData = async () => {
     const response = await getCirclesData();
     userData.value = response.data
     // userData.value = circlesDataGeneration(numCircles.value);
-    console.log(userData);
     const rows = distributeRows(userData.value, colorsOfCircles);
-    console.log(userData.value);
+    console.log('User data fetched.');
     upperRow.value = rows.upperRow;
     upperColors.value = rows.upperColor;
     lowerRow.value = rows.lowerRow;
@@ -44,9 +43,9 @@ const fetchData = async () => {
 onMounted(async () => {
   fetchData();
 
-  setInterval(async () => {
-    fetchData();
-  }, 10 * 1000);
+  // setInterval(async () => {
+  //   fetchData();
+  // }, 10 * 1000);
 });
 
 </script>
@@ -55,7 +54,7 @@ onMounted(async () => {
   <main>
     <div class="rows_container">
       <div class="rows">
-        <div class="img_container">
+        <div class="img_container" @click="fetchData">
           <BaseImage :src="imageSrc" :alt="`Logo img`"
             :style="{ height: 'auto', width: '250px', border: 'none', marginTop: '2dvh' }" />
         </div>
