@@ -3,7 +3,7 @@
         <div class="chats_container">
             <div class="img_container">
                 <BaseImage :src="imageSrc" :alt="`Logo img`"
-                    :style="{ height: 'auto', width: '250px', border: 'none', marginTop: '2dvh' }" />
+                    :style="{ height: 'auto', width: '150px', border: 'none', marginTop: '2dvh' }" />
             </div>
             <div class="line_graphs_container">
                 <div class="chart_container">
@@ -115,31 +115,28 @@ onMounted(async () => {
     width: 100%;
     height: 100%;
     padding-top: 5%;
-    gap: 50px;
+    gap: 25px;
 }
 
 .line_graphs_container {
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    gap: 40px;
     width: 95%;
-    height: 70%;
-    padding: 50px 100px;
-    border-radius: 40px;
-    /* Закругленные углы */
+    height: 80%;
+    padding: 20px 30px;
+    border-radius: 30px;
     background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
-    /* Заливка с прозрачностью */
     border: 1px solid rgb(255 255 255 / 30%);
-    /* Обводка с прозрачностью */
     backdrop-filter: blur(10px);
     transform: translateY(5%);
 }
 
 .chart_container {
     background: linear-gradient(to bottom, #a7b2c642 0%, #606a815c 100%);
-    border-radius: 40px;
-    height: 45%;
-    padding: 50px 100px;
+    border-radius: 30px;
+    height: 48%;
+    padding: 20px 30px;
     display: flex;
     justify-content: center;
 }

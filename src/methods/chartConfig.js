@@ -20,11 +20,11 @@ export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120)
         fullSize: true,
         align: 'start',
         padding: {
-          top: 10,
-          bottom: 50
+          top: 5,
+          bottom: 20,
         },
         font: {
-          size: 40,
+          size: 22,
           family: 'Arial, sans-serif',
           weight: '400', 
         },
@@ -42,11 +42,11 @@ export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120)
         ticks: {
           color: '#fff',
           font: {
-            size: 30,
+            size: 18,
             family: 'Arial, sans-serif',
             weight: '400',
           },
-          padding: 0,
+          padding: 5,
           callback: function(value) {
             return value % 40 === 0 ? value : '';
           },
@@ -63,7 +63,7 @@ export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120)
         },      
         border: {
           display: false,
-          dash: [15, 10],
+          dash: [7, 7],
         },
       },
     },
@@ -81,7 +81,7 @@ export function createChartData(borderColor = '#FF1A88') {
     datasets: [
       {
         borderColor: borderColor,
-        borderWidth: 15,
+        borderWidth: 6,
         data: [],
         tension: 0.4,
       },
