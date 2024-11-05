@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { circlesDataGeneration } from '@/store/data_generation';
 import { distributeRows } from '@/methods/CircleDataProcess';
 
-import { checkUpdateScreen, getCirclesData } from '@/api/fastapi.js/getObjectsRequests';
+import { checkUpdateScreen, checkUpdateTranslation, getCirclesData } from '@/api/fastapi.js/getObjectsRequests';
 import CircleComponent from '@/components/CircleComponent.vue';
 
 import BaseImage from '@/components/images/BaseImage.vue';
@@ -51,17 +51,18 @@ const fetchData = async () => {
     }
 };
 
+
 onMounted(async () => {
     fetchData();
 
     setInterval(async () => {
-        const updateStatus = await checkUpdateScreen();
-        if (updateStatus === 1) {
+        const updateStatus = await checkUpdateTranslation();
+        console.log(updateStatus);
+        if (updateStatus.data === 1) {
             fetchData();
         }
     }, 5 * 1000);
 });
-
 // onUnmounted(() => {
 //   clearInterval(intervalId);
 // });

@@ -41,4 +41,11 @@ const checkUpdateScreen = async () => {
     return await getRequest(API_ENDPOINTS.checkUpdateScreen, getCirclesDataHeader)
 }
 
-export {getCirclesData, getIpadData, checkUpdateScreen};
+const checkUpdateTranslation = async () => {
+    const getCirclesDataHeader = {
+        'Accept': 'application/json',
+    }
+    return await getRequest(API_ENDPOINTS.checkUpdateTranslation, getCirclesDataHeader)
+}
+
+export {getCirclesData, getIpadData, checkUpdateScreen, checkUpdateTranslation};

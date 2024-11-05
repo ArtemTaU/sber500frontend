@@ -56,7 +56,8 @@ onMounted(async () => {
 
   setInterval(async () => {
     const updateStatus = await checkUpdateScreen();
-    if (updateStatus === 1) {
+    console.log(updateStatus.data);
+    if (updateStatus.data === 1) {
       fetchData();
     }
   }, 5 * 1000);
