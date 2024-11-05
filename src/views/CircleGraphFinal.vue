@@ -105,7 +105,7 @@ onMounted(async () => {
 .rows {
   display: flex;
   flex-direction: column;
-  gap: 240px;
+  gap: 120px;
 }
 
 .upper_row,
