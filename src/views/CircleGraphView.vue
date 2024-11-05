@@ -12,16 +12,16 @@ const svgGraphSize = 300;
 
 const numCircles = ref(12);
 
-const userData =  ref({});
-const upperRow =  ref([]);
-const lowerRow =  ref([]);
+const userData = ref({});
+const upperRow = ref([]);
+const lowerRow = ref([]);
 
-const upperColors =  ref([]);
-const lowerColors =  ref([]);
+const upperColors = ref([]);
+const lowerColors = ref([]);
 
-onMounted(async () => {  
+onMounted(async () => {
   const responseData = await getCirclesData();
-  console.log(responseData);  
+  console.log(responseData);
   userData.value = responseData.data
 
   userData.value = circlesDataGeneration(numCircles.value);
@@ -41,26 +41,14 @@ onMounted(async () => {
     <div class="rows">
       <div class="upper_row">
         <div v-for="(value, key, index) in upperRow" :key="key">
-          <SphericalGraph 
-            :judgeNumber="key" 
-            :pulseValue="value.average_pulse" 
-            :x="value.x" 
-            :y="value.y" 
-            :size="svgGraphSize" 
-            :color="upperColors[index]"
-          />
+          <SphericalGraph :judgeNumber="key" :pulseValue="value.average_pulse" :x="value.x" :y="value.y"
+            :size="svgGraphSize" :color="upperColors[index]" />
         </div>
       </div>
       <div class="lower_row">
         <div v-for="(value, key, index) in lowerRow" :key="index">
-          <SphericalGraph 
-            :judgeNumber="key" 
-            :pulseValue="value.average_pulse" 
-            :x="value.x" 
-            :y="value.y" 
-            :size="svgGraphSize" 
-            :color="lowerColors[index]"
-          />
+          <SphericalGraph :judgeNumber="key" :pulseValue="value.average_pulse" :x="value.x" :y="value.y"
+            :size="svgGraphSize" :color="lowerColors[index]" />
         </div>
       </div>
     </div>
@@ -74,10 +62,11 @@ onMounted(async () => {
   gap: 50px;
 }
 
-.upper_row, .lower_row {
+.upper_row,
+.lower_row {
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 240px;
   min-width: 40vw;
   justify-content: center;
 }

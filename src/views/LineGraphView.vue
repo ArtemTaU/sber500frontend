@@ -9,9 +9,9 @@
                 <div class="chart_container">
                     <ChartComponent :chartData="dataForBottomGraph" :chartOptions="bottomGraphOptions" />
                 </div>
-                <div class="chart_container">
+                <!-- <div class="chart_container">
                     <ChartComponent :chartData="dataForTopGraph" :chartOptions="topGraphOptions" />
-                </div>
+                </div> -->
             </div>
         </div>
         <font-awesome-icon :icon="['fas', 'circle-question']" class="fa_circle_question" @click="showPopup = true" />
@@ -198,7 +198,7 @@ onMounted(async () => {
 .chart_container {
     background: linear-gradient(to bottom, #a7b2c642 0%, #606a815c 100%);
     border-radius: 30px;
-    height: 48%;
+    /* height: 48%; */
     padding: 20px 30px;
     display: flex;
     justify-content: center;

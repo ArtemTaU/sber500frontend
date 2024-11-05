@@ -12,7 +12,7 @@ const imageSrc = new URL('@/assets/images/500Logo.png', import.meta.url).href;
 
 const colorsOfCircles = ['#9001FE', '#063AF3', '#FF036D', '#0BEDDA', '#5201A7', '#FF036D', '#0BEDDA', '#063AF3', '#9001FE', '#DF0367'];
 
-const svgGraphSize = 300;
+const svgGraphSize = 282;
 
 const numCircles = ref(7);
 
@@ -71,12 +71,11 @@ onMounted(async () => {
 
 <template>
   <main>
+    <div class="img_container" @click="fetchData">
+      <BaseImage :src="imageSrc" :alt="`Logo img`" :style="{ height: 'auto', width: '240px', border: 'none' }" />
+    </div>
     <div class="rows_container">
       <div class="rows">
-        <div class="img_container" @click="fetchData">
-          <BaseImage :src="imageSrc" :alt="`Logo img`"
-            :style="{ height: 'auto', width: '250px', border: 'none', marginTop: '2dvh' }" />
-        </div>
         <div class="upper_row">
           <div v-for="(value, key, index) in upperRow" :key="key">
             <CircleComponent :judgeNumber="value.name" :value="value.average_si" :size="svgGraphSize"
@@ -106,15 +105,20 @@ onMounted(async () => {
 .rows {
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  transform: translateY(-80px);
+  gap: 240px;
 }
 
 .upper_row,
 .lower_row {
   display: flex;
   flex-direction: row;
-  gap: 80px;
+  gap: 240px;
   justify-content: center;
+}
+
+.img_container {
+  position: absolute;
+  top: 64px;
+  left: 64px;
 }
 </style>

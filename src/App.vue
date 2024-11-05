@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { getCirclesData } from '@/api/fastapi.js/getObjectsRequests';
 import { useRoute } from 'vue-router';
+import { circlesDataGeneration } from '@/store/data_generation';
 
 const route = useRoute();
 const userData = ref({});
@@ -9,7 +10,8 @@ const userData = ref({});
 const fetchData = async () => {
     try {
         const response = await getCirclesData();
-        userData.value = response.data;
+        // userData.value = response.data;
+        userData.value = circlesDataGeneration(5);
         console.log(userData);
     } catch (error) {
         console.error('Error fetching data:', error);

@@ -18,5 +18,21 @@ main {
   background: 
     radial-gradient(rgb(0 0 0 / 66%), rgb(255 255 255 / 0%)), /* Центральный радиальный градиент */ 
     radial-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 0%)), /* Второй радиальный градиент */ 
-    linear-gradient(to bottom, rgb(25 52 136 / 150%) 10%, rgb(2 10 36) 120%);
+    linear-gradient(to right bottom, rgb(25 52 136 / 150%) 10%, rgb(2 10 36) 120%);
+}
+
+/* src/assets/styles/main.css */
+
+@font-face {
+  font-family: 'sb-sans-display';
+  src: url('./fonts/sb-sans-display.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sb-sans-display-semibold';
+  src: url('./fonts/sb-sans-display-semibold.ttf') format('truetype');
+  font-weight: 600; /* или 'bold' в зависимости от конкретного веса шрифта */
+  font-style: normal;
 }

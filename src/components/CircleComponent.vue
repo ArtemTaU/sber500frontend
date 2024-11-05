@@ -20,15 +20,15 @@ const props = defineProps({
     }
 });
 
-const pulseValueFont = ref(Math.round(props.size / 3));
+const pulseValueFont = ref(Math.round(props.size * 0.254));
 const judgeNumberFont = ref(Math.round(props.size / 10));
-const circleBorderWidth = ref(Math.round(props.size / 30));
+const circleBorderWidth = ref(Math.round(props.size / 35));
 const judgeContainerMinWidth = ref(Math.round(props.size / 3));
 
 const colorRanges = [
-    { min: 0, max: 330, color: 'white', frequency: 2000, opacity: 0.1 },
-    { min: 331, max: 666, color: 'blue', frequency: 1000, opacity: 0.4 },
-    { min: 667, max: 1000, color: 'purple', frequency: 500, opacity: 0.7 },
+    { min: 0, max: 200, color: 'white', frequency: 2000, opacity: 0.1 },
+    { min: 201, max: 500, color: 'blue', frequency: 1000, opacity: 0.4 },
+    { min: 501, max: 1000, color: 'purple', frequency: 500, opacity: 0.7 },
 ];
 
 const getColor = computed(() => {
@@ -38,9 +38,9 @@ const getColor = computed(() => {
 
 const getColorRGB = computed(() => {
     switch (getColor.value) {
-        case 'white': return '255, 255, 255';
-        case 'blue': return '0, 0, 255';
-        case 'purple': return '128, 0, 128';
+        case 'white': return '153, 153, 153';
+        case 'blue': return '0, 191, 255';
+        case 'purple': return '173, 77, 255';
         default: return '128, 128, 128'; // Серый цвет по умолчанию
     }
 });
@@ -62,7 +62,7 @@ const getOpacity = computed(() => {
             height: `${size}px`,
             width: `${size}px`,
             borderWidth: `${circleBorderWidth}px`,
-            borderColor: `rgba(${getColorRGB}, ${getOpacity})`, /* Устанавливаем цвет для границы */
+            borderColor: `rgba(${getColorRGB})`, /* Устанавливаем цвет для границы */
             '--shadowColor': getColorRGB,
             '--shadowMaxOpacity': getOpacity,
             animationDuration: `${blinkFrequency}ms`,  // Здесь мы устанавливаем частоту мерцания
@@ -89,7 +89,7 @@ const getOpacity = computed(() => {
 
 .main_circle {
     border-radius: 50%;
-    border-width: 10px;
+    border-width: 5px;
     border-style: solid;
     position: relative;
     animation: blinkShadow infinite alternate;
@@ -110,11 +110,11 @@ const getOpacity = computed(() => {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(-60%);
+    transform: translateX(-50%) translateY(-50%);
     min-width: 100px;
     padding: 0px 15px;
-    border-radius: 8px;
-    border: 2px solid rgba(255, 255, 255, 0.853);
+    border-radius: 16px;
+    border: 1px solid rgba(153, 153, 153, 0.853);
     display: flex;
     justify-content: center;
     background-color: transparent;
