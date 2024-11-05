@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 const props = defineProps({
     judgeNumber: {
@@ -16,14 +16,19 @@ const props = defineProps({
     },
     size: {
         type: Number,
+        default: 300
     }
 });
 
+const pulseValueFont = ref(Math.round(props.size / 3));
+const judgeNumberFont = ref(Math.round(props.size / 10));
+const circleBorderWidth = ref(Math.round(props.size / 30));
+const judgeContainerMinWidth = ref(Math.round(props.size / 3));
+
 const colorRanges = [
-    { min: 0, max: 250, color: 'green', frequency: 2000 },
-    { min: 251, max: 500, color: 'blue', frequency: 1000 },
-    { min: 501, max: 750, color: 'purple', frequency: 500 },
-    { min: 751, max: 1000, color: 'red', frequency: 250 }
+    { min: 0, max: 330, color: 'white', frequency: 2000, opacity: 0.1 },
+    { min: 331, max: 666, color: 'blue', frequency: 1000, opacity: 0.4 },
+    { min: 667, max: 1000, color: 'purple', frequency: 500, opacity: 0.7 },
 ];
 
 const getColor = computed(() => {
@@ -33,10 +38,9 @@ const getColor = computed(() => {
 
 const getColorRGB = computed(() => {
     switch (getColor.value) {
-        case 'green': return '0, 128, 0';
+        case 'white': return '255, 255, 255';
         case 'blue': return '0, 0, 255';
         case 'purple': return '128, 0, 128';
-        case 'red': return '255, 0, 0';
         default: return '128, 128, 128'; // Серый цвет по умолчанию
     }
 });
@@ -46,6 +50,10 @@ const blinkFrequency = computed(() => {
     return range ? range.frequency : 1000; // Значение по умолчанию — 1 секунда
 });
 
+const getOpacity = computed(() => {
+    const range = colorRanges.find(r => props.value >= r.min && props.value <= r.max);
+    return range ? range.opacity : 0.5; // Default opacity
+});
 </script>
 
 <template>
@@ -53,18 +61,20 @@ const blinkFrequency = computed(() => {
         <div class="main_circle" :style="{
             height: `${size}px`,
             width: `${size}px`,
-            borderColor: getColor, /* Устанавливаем цвет для границы */
+            borderWidth: `${circleBorderWidth}px`,
+            borderColor: `rgba(${getColorRGB}, ${getOpacity})`, /* Устанавливаем цвет для границы */
             '--shadowColor': getColorRGB,
+            '--shadowMaxOpacity': getOpacity,
             animationDuration: `${blinkFrequency}ms`,  // Здесь мы устанавливаем частоту мерцания
-            boxShadow: `0 0 30px 15px rgba(${getColorRGB}, 0.5),
-                        0 0 60px 30px rgba(${getColorRGB}, 0.3),
-                        0 0 90px 45px rgba(${getColorRGB}, 0.1)`
+            boxShadow: `0 0 30px 15px rgba(${getColorRGB}, ${getOpacity}),
+                        0 0 60px 30px rgba(${getColorRGB}, ${getOpacity * 0.6}),
+                        0 0 90px 45px rgba(${getColorRGB}, ${getOpacity * 0.3})`
         }">
-            <p class="pulse_value">
+            <p class="pulse_value" :style="{ fontSize: `${pulseValueFont}px` }">
                 {{ Math.round(value) }}
             </p>
-            <div class="judge_number_container">
-                <p class="judge_number">
+            <div class="judge_number_container" :style="{ minWidth: `${judgeContainerMinWidth}px` }">
+                <p class="judge_number" :style="{ fontSize: `${judgeNumberFont}px` }">
                     #{{ judgeNumber }}
                 </p>
             </div>
@@ -135,15 +145,15 @@ const blinkFrequency = computed(() => {
 
 @keyframes blinkShadow {
     0% {
-        box-shadow: 0 0 30px 15px rgba(var(--shadowColor), 0.5),
-            0 0 60px 30px rgba(var(--shadowColor), 0.3),
-            0 0 90px 45px rgba(var(--shadowColor), 0.1);
+        box-shadow: 0 0 30px 15px rgba(var(--shadowColor), var(--shadowMaxOpacity)),
+            0 0 60px 30px rgba(var(--shadowColor), calc(var(--shadowMaxOpacity) * 0.6)),
+            0 0 90px 45px rgba(var(--shadowColor), calc(var(--shadowMaxOpacity) * 0.3));
     }
 
     100% {
-        box-shadow: 0 0 40px 20px rgba(var(--shadowColor), 0.1),
-            0 0 80px 40px rgba(var(--shadowColor), 0.05),
-            0 0 120px 60px rgba(var(--shadowColor), 0.02);
+        box-shadow: 0 0 40px 20px rgba(var(--shadowColor), calc(var(--shadowMaxOpacity) * 0.1)),
+            0 0 80px 40px rgba(var(--shadowColor), calc(var(--shadowMaxOpacity) * 0.05)),
+            0 0 120px 60px rgba(var(--shadowColor), calc(var(--shadowMaxOpacity) * 0.02));
     }
 }
 </style>

@@ -24,7 +24,7 @@ onMounted(fetchData);
         <nav v-if="route.path === '/'">
             <!-- <router-link to="/circle_graphs" class="nav-button">Circle Graph</router-link> -->
             <router-link to="/circles_final" class="nav-button">Основной экран</router-link>
-
+            <router-link to="/circles_translation" class="nav-button">Трансляция</router-link>
             <div v-for="(value, key) in userData" :key="key">
                 <router-link :to="{ name: 'line_graph', params: { swaidId: key } }" class="nav-button">
                     График судьи: {{ value.name }}

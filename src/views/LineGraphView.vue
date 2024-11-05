@@ -7,10 +7,10 @@
             </div>
             <div class="line_graphs_container">
                 <div class="chart_container">
-                    <ChartComponent :chartData="dataForTopGraph" :chartOptions="topGraphOptions" />
+                    <ChartComponent :chartData="dataForBottomGraph" :chartOptions="bottomGraphOptions" />
                 </div>
                 <div class="chart_container">
-                    <ChartComponent :chartData="dataForBottomGraph" :chartOptions="bottomGraphOptions" />
+                    <ChartComponent :chartData="dataForTopGraph" :chartOptions="topGraphOptions" />
                 </div>
             </div>
         </div>
