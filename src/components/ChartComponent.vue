@@ -1,5 +1,5 @@
 <template>
-    <canvas ref="chartCanvas"></canvas>
+  <canvas ref="chartCanvas"></canvas>
 </template>
 
 <script setup>
@@ -47,5 +47,7 @@ watch(
 </script>
 
 <style scoped>
+canvas {
+  transform: translateY(-14px);
+}
 </style>
-  

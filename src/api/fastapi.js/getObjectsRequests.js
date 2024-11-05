@@ -33,4 +33,12 @@ const getIpadData = async (swaidId) => {
     return response
 };
 
-export {getCirclesData, getIpadData};
+
+const checkUpdateScreen = async () => {
+    const getCirclesDataHeader = {
+        'Accept': 'application/json',
+    }
+    return await getRequest(API_ENDPOINTS.checkUpdateScreen, getCirclesDataHeader)
+}
+
+export {getCirclesData, getIpadData, checkUpdateScreen};

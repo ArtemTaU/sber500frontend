@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
 
-export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120) {
+export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120, grid = 40) {
   return reactive({
     responsive: true,
     aspectRatio: 1 | 4, 
@@ -48,13 +48,13 @@ export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120)
           },
           padding: 5,
           callback: function(value) {
-            return value % 40 === 0 ? value : '';
+            return value % grid === 0 ? value : '';
           },
           beginAtZero: true,
         },
         grid: {
           color: function(context) {
-            if (context.tick && (context.tick.value === 0 || context.tick.value % 40 === 0)) {
+            if (context.tick && (context.tick.value === 0 || context.tick.value % grid === 0)) {
               return 'rgba(255, 255, 255, 1)';
             }
             return 'rgba(0, 0, 0, 0)';

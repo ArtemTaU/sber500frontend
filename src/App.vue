@@ -27,7 +27,7 @@ onMounted(fetchData);
 
             <div v-for="(value, key) in userData" :key="key">
                 <router-link :to="{ name: 'line_graph', params: { swaidId: key } }" class="nav-button">
-                    График судьи: {{ key }}
+                    График судьи: {{ value.name }}
                 </router-link>
             </div>
         </nav>

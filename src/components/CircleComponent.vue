@@ -20,10 +20,10 @@ const props = defineProps({
 });
 
 const colorRanges = [
-    { min: 0, max: 250, color: 'green' },
-    { min: 251, max: 500, color: 'blue' },
-    { min: 501, max: 750, color: 'purple' },
-    { min: 751, max: 1000, color: 'red' }
+    { min: 0, max: 250, color: 'green', frequency: 2000 },
+    { min: 251, max: 500, color: 'blue', frequency: 1000 },
+    { min: 501, max: 750, color: 'purple', frequency: 500 },
+    { min: 751, max: 1000, color: 'red', frequency: 250 }
 ];
 
 const getColor = computed(() => {
@@ -41,6 +41,11 @@ const getColorRGB = computed(() => {
     }
 });
 
+const blinkFrequency = computed(() => {
+    const range = colorRanges.find(r => props.value >= r.min && props.value <= r.max);
+    return range ? range.frequency : 1000; // Значение по умолчанию — 1 секунда
+});
+
 </script>
 
 <template>
@@ -49,6 +54,8 @@ const getColorRGB = computed(() => {
             height: `${size}px`,
             width: `${size}px`,
             borderColor: getColor, /* Устанавливаем цвет для границы */
+            '--shadowColor': getColorRGB,
+            animationDuration: `${blinkFrequency}ms`,  // Здесь мы устанавливаем частоту мерцания
             boxShadow: `0 0 30px 15px rgba(${getColorRGB}, 0.5),
                         0 0 60px 30px rgba(${getColorRGB}, 0.3),
                         0 0 90px 45px rgba(${getColorRGB}, 0.1)`
@@ -75,7 +82,9 @@ const getColorRGB = computed(() => {
     border-width: 10px;
     border-style: solid;
     position: relative;
+    animation: blinkShadow infinite alternate;
 }
+
 
 .pulse_value {
     font-size: 100px;
@@ -85,6 +94,7 @@ const getColorRGB = computed(() => {
     left: 50%;
     transform: translateX(-50%) translateY(-55%);
 }
+
 
 .judge_number_container {
     position: absolute;
@@ -121,5 +131,19 @@ const getColorRGB = computed(() => {
     color: aliceblue;
     position: relative;
     z-index: 1;
+}
+
+@keyframes blinkShadow {
+    0% {
+        box-shadow: 0 0 30px 15px rgba(var(--shadowColor), 0.5),
+            0 0 60px 30px rgba(var(--shadowColor), 0.3),
+            0 0 90px 45px rgba(var(--shadowColor), 0.1);
+    }
+
+    100% {
+        box-shadow: 0 0 40px 20px rgba(var(--shadowColor), 0.1),
+            0 0 80px 40px rgba(var(--shadowColor), 0.05),
+            0 0 120px 60px rgba(var(--shadowColor), 0.02);
+    }
 }
 </style>

@@ -3,7 +3,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue';
 import { circlesDataGeneration } from '@/store/data_generation';
 import { distributeRows } from '@/methods/CircleDataProcess';
 
-import { getCirclesData } from '@/api/fastapi.js/getObjectsRequests';
+import { checkUpdateScreen, getCirclesData } from '@/api/fastapi.js/getObjectsRequests';
 import CircleComponent from '@/components/CircleComponent.vue';
 
 import BaseImage from '@/components/images/BaseImage.vue';
@@ -22,6 +22,17 @@ const lowerRow = ref([]);
 
 const upperColors = ref([]);
 const lowerColors = ref([]);
+
+const checkUpdateStatus = async () => {
+  try {
+    const response = await checkUpdateScreen();
+    console.log(response.data);
+    return response.data
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+
 
 const fetchData = async () => {
   try {
@@ -43,10 +54,17 @@ const fetchData = async () => {
 onMounted(async () => {
   fetchData();
 
-  // setInterval(async () => {
-  //   fetchData();
-  // }, 10 * 1000);
+  setInterval(async () => {
+    const updateStatus = await checkUpdateScreen();
+    if (updateStatus === 1) {
+      fetchData();
+    }
+  }, 5 * 1000);
 });
+
+// onUnmounted(() => {
+//   clearInterval(intervalId);
+// });
 
 </script>
 
@@ -60,13 +78,13 @@ onMounted(async () => {
         </div>
         <div class="upper_row">
           <div v-for="(value, key, index) in upperRow" :key="key">
-            <CircleComponent :judgeNumber="key" :value="value.average_si" :size="svgGraphSize"
+            <CircleComponent :judgeNumber="value.name" :value="value.average_si" :size="svgGraphSize"
               :color="upperColors[index]" />
           </div>
         </div>
         <div class="lower_row">
-          <div v-for="(value, key, index) in lowerRow" :key="index">
-            <CircleComponent :judgeNumber="key" :value="value.average_si" :size="svgGraphSize"
+          <div v-for="(value, key, index) in lowerRow" :key="key">
+            <CircleComponent :judgeNumber="value.name" :value="value.average_si" :size="svgGraphSize"
               :color="lowerColors[index]" />
           </div>
         </div>

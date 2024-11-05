@@ -22,7 +22,7 @@ import { ref } from 'vue';
 
 import ChartComponent from '@/components/ChartComponent.vue';
 import { postMethod } from '@/api/fastapi.js/postRequests';
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import { getIpadData } from '@/api/fastapi.js/getObjectsRequests';
 import { createChartData, createChartOptions } from '@/methods/chartConfig';
 
@@ -49,8 +49,8 @@ const props = defineProps({
 maxTopGraphY.value = Math.max(...topGraphY.value);
 minTopGraphY.value = Math.min(...topGraphY.value);
 
-const topGraphOptions = createChartOptions('ПУЛЬС');
-const bottomGraphOptions = createChartOptions('СТРЕСС');
+const topGraphOptions = createChartOptions('ИЗМЕРЕНИЕ ПУЛЬСА', 0, 30, 10);
+const bottomGraphOptions = createChartOptions('ИНДЕКС ЗАИНТЕРЕСОВАННОСТИ');
 const dataForTopGraph = createChartData('#FF1A88');
 const dataForBottomGraph = createChartData('#FF1A88');
 
@@ -105,6 +105,12 @@ onMounted(async () => {
     //     startMethodPost();
     //   }, 150 * 1000); 
 });
+
+
+// onUnmounted(() => {
+//     clearInterval(intervalId);
+// });
+
 </script>
 
 <style scoped>
@@ -124,7 +130,7 @@ onMounted(async () => {
     gap: 40px;
     width: 95%;
     height: 80%;
-    padding: 20px 30px;
+    padding: 35px 35px;
     border-radius: 30px;
     background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
     border: 1px solid rgb(255 255 255 / 30%);
@@ -139,6 +145,8 @@ onMounted(async () => {
     padding: 20px 30px;
     display: flex;
     justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
 .img_container {
