@@ -3,7 +3,7 @@ import { reactive } from 'vue';
 export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120, grid = 40) {
   return reactive({
     responsive: true,
-    aspectRatio: 1 | 4, 
+    aspectRatio: 1 | 2, 
     layout: {
       padding: {
         left: 0

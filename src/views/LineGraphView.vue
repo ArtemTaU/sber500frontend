@@ -18,53 +18,14 @@
 
         <div v-if="showPopup" class="popup_overlay" @click.self="showPopup = false">
             <div class="popup_content">
-                <h3>Информация</h3>
-                <p>
-                    Браслет, который сейчас находится на Вас, измеряет ритм сердцебиения и
-                    может не только считать количество ударов в минуту, но и отслеживать даже
-                    небольшие колебания между ударами сердца. На основе этих данных браслет
-                    оценивает уровень стресса по индексу Баевского.
-                </p>
-                <br>
-                <p>
-                    <strong>Индекс Баевского</strong> (иногда также называемый индексом напряжения,
-                    стресс-индикатором или, как мы его назвали, <strong>Индексом эмоций</strong>) – это показатель,
-                    разработанный Романом Марковичем Баевским, российским ученым в области биофизики.
-                    Этот показатель помогает оценить эмоциональное состояние организма,
-                    анализируя вариабельность сердечного ритма, то есть изменения интервалов
-                    между ударами сердца, которые отражают активность вегетативной нервной системы.
-
-                </p>
-                <br>
-                <p>Индекс Баевского измеряется в условных единицах и его значения можно интерпретировать по шкале:</p>
-
-                <ul>
-                    <li><strong>
-                            0-150 единиц</strong> – нормальное состояние, низкий уровень стресса.
-                    </li>
-                    <li>
-                        <strong>150-500 единиц</strong> – психоэмоциональное напряжение,
-                        свидетельствует о повышенной активности симпатической нервной системы.
-                    </li>
-                    <li>
-                        <strong>Более 500 единиц</strong> – существенное повышение уровня стресса,
-                        указывает на высокое напряжение в организме.
-                    </li>
-                </ul>
-
-                <p>У каждого человека свой уровень состояния эмоционального спокойствия,
-                    но обычно он находится в пределах от 0 до 150 единиц. Однако резкие
-                    пики на графике могут указывать на временное повышенное эмоциональное напряжение.
-                    Эти пики отражают моменты эмоциональных всплесков, заинтересованности,
-                    ожидания, удивления или, наоборот, несогласия и сопротивления.
-                    Современные технологии пока не способны определять, была ли эмоция положительной
-                    или отрицательной – наука ещё не дошла до этого. В рамках нашего мероприятия
-                    подобные эмоциональные всплески помогут идентифицировать, оставил ли питч стартапа
-                    Вас в спокойном состоянии или вызвал всплеск эмоций в ту или иную сторону.
-                </p>
-                <div class="button-container">
-                    <button @click="showPopup = false">Закрыть</button>
+                <div class="img_container full_image">
+                    <BaseImage :src="imageBracerSrc" :alt="`Logo img`" />
                 </div>
+                <!-- <div class="button-container">
+                    <button @click="showPopup = false">Закрыть</button>
+                </div> -->
+                <font-awesome-icon :icon="['fas', 'circle-xmark']" class="fa_circle_question"
+                    @click="showPopup = false" />
             </div>
         </div>
     </main>
@@ -84,6 +45,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import BaseImage from '@/components/images/BaseImage.vue';
 
 const imageSrc = new URL('@/assets/images/500Logo.png', import.meta.url).href;
+const imageBracerSrc = new URL('@/assets/images/Bracer_info.png', import.meta.url).href;
 
 const showPopup = ref(false);
 
@@ -178,7 +140,7 @@ onMounted(async () => {
     width: 100%;
     height: 100%;
     padding-top: 5%;
-    gap: 25px;
+    gap: 70px;
 }
 
 .line_graphs_container {
@@ -186,7 +148,7 @@ onMounted(async () => {
     flex-direction: column;
     gap: 40px;
     width: 95%;
-    height: 78%;
+    height: 65%;
     padding: 35px 35px;
     border-radius: 30px;
     background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
@@ -199,6 +161,7 @@ onMounted(async () => {
     background: linear-gradient(to bottom, #a7b2c642 0%, #606a815c 100%);
     border-radius: 30px;
     /* height: 48%; */
+    height: 100%;
     padding: 20px 30px;
     display: flex;
     justify-content: center;
@@ -233,14 +196,14 @@ onMounted(async () => {
 
 .popup_content {
     background: #ffffff;
-    padding: 20px;
     border-radius: 8px;
     width: 80%;
-    max-width: 80%;
+    height: auto;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: left;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .popup_content h3 {
@@ -272,5 +235,23 @@ onMounted(async () => {
 .popup_content p {
     font-size: 18px;
     margin-top: 20px;
+}
+
+.img_container.full_image {
+    width: 100%;
+    height: auto;
+    /* Высота будет автоматически подстраиваться под ширину */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img_container.full_image img {
+    width: 100%;
+    /* Занимает всю ширину контейнера */
+    height: auto;
+    /* Высота подстраивается для сохранения пропорций */
+    object-fit: contain;
+    /* Контейнер сохраняет пропорции изображения */
 }
 </style>
