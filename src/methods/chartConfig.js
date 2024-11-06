@@ -33,7 +33,30 @@ export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120,
     },
     scales: {
       x: {
-        display: false,
+        display: true,
+        suggestedMin: 0,
+        suggestedMax: 150,
+        ticks: {
+          color: '#fff',
+          font: {
+            size: 18,
+            family: 'Arial, sans-serif',
+            weight: '400',
+          },
+          padding: 5,
+          callback: function(value) {
+            return value % 20 === 0 ? value : '';
+          },
+          beginAtZero: true,
+          maxRotation: 0,
+          minRotation: 0,
+        },
+        grid: {
+          color: function(context) {
+            return 'rgba(0, 0, 0, 0)';
+          },    
+          lineWidth: 0
+        }, 
       },
       y: {
         display: true,

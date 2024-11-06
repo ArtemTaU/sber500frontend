@@ -27,8 +27,8 @@ const judgeContainerMinWidth = ref(Math.round(props.size / 3));
 
 const colorRanges = [
     { min: 0, max: 150, color: 'white', frequency: 2000, opacity: 0.1 },
-    { min: 151, max: 500, color: 'blue', frequency: 1000, opacity: 0.4 },
-    { min: 501, max: 1000, color: 'purple', frequency: 500, opacity: 0.7 },
+    { min: 151, max: 350, color: 'blue', frequency: 1000, opacity: 0.4 },
+    { min: 351, max: 1000, color: 'purple', frequency: 500, opacity: 0.7 },
 ];
 
 const getColor = computed(() => {
