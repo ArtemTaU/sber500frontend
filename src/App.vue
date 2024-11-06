@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { getCirclesData } from '@/api/fastapi.js/getObjectsRequests';
+import { getCirclesData, getJuryData } from '@/api/fastapi.js/getObjectsRequests';
 import { useRoute } from 'vue-router';
 import { circlesDataGeneration } from '@/store/data_generation';
 
@@ -9,7 +9,8 @@ const userData = ref({});
 
 const fetchData = async () => {
     try {
-        const response = await getCirclesData();
+        // const response = await getCirclesData();
+        const response = await getJuryData();
         userData.value = response.data;
         // userData.value = circlesDataGeneration(5);
         console.log(userData);
@@ -29,7 +30,7 @@ onMounted(fetchData);
             <router-link to="/circles_translation" class="nav-button">Трансляция</router-link>
             <div v-for="(value, key) in userData" :key="key">
                 <router-link :to="{ name: 'line_graph', params: { swaidId: key } }" class="nav-button">
-                    График судьи: {{ value.name }}
+                    График судьи: {{ key }}
                 </router-link>
             </div>
         </nav>

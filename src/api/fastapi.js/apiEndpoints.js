@@ -4,6 +4,7 @@ const API_ENDPOINTS = {
     getIpadData: 'https://alavenir.tech/api/sber500/get_data_for_ipad',
     checkUpdateScreen: 'https://alavenir.tech/api/sber500/check_update_screen',
     checkUpdateTranslation: 'https://alavenir.tech/api/sber500/check_update_translation',
+    getJuryData: 'https://alavenir.tech/api/sber500/get_jury'
 };
 
 export default API_ENDPOINTS;

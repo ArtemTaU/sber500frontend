@@ -84,7 +84,7 @@ const startMethodPost = () => {
 const fetchIpadData = async () => {
     try {
         const response = await getIpadData(props.swaidId);
-        const ipadData = response.data[props.swaidId]
+        const ipadData = response.data[props.swaidId];
         return ipadData
     } catch (error) {
         console.error('Error fetching iPad data:', error);

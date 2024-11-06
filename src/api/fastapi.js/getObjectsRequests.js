@@ -23,6 +23,13 @@ const getCirclesData = async () => {
     return await getRequest(API_ENDPOINTS.getCirclesData, getCirclesDataHeader)
 }
 
+const getJuryData = async () => {
+    const getCirclesDataHeader = {
+        'Accept': 'application/json',
+    }
+    return await getRequest(API_ENDPOINTS.getCirclesData, getCirclesDataHeader)
+}
+
 const getIpadData = async (swaidId) => {
     const getUserObjectsHeader = {
         'Accept': 'application/json',
@@ -48,4 +55,4 @@ const checkUpdateTranslation = async () => {
     return await getRequest(API_ENDPOINTS.checkUpdateTranslation, getCirclesDataHeader)
 }
 
-export {getCirclesData, getIpadData, checkUpdateScreen, checkUpdateTranslation};
+export {getCirclesData, getIpadData, checkUpdateScreen, checkUpdateTranslation, getJuryData};

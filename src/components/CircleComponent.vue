@@ -75,7 +75,7 @@ const getOpacity = computed(() => {
             </p>
             <div class="judge_number_container" :style="{ minWidth: `${judgeContainerMinWidth}px` }">
                 <p class="judge_number" :style="{ fontSize: `${judgeNumberFont}px` }">
-                    #{{ judgeNumber }}
+                    {{ judgeNumber }}
                 </p>
             </div>
         </div>
@@ -141,6 +141,7 @@ const getOpacity = computed(() => {
     color: aliceblue;
     position: relative;
     z-index: 1;
+    text-align: center;
 }
 
 @keyframes blinkShadow {
