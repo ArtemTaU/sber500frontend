@@ -25,7 +25,7 @@ onMounted(fetchData);
 <template>
     <main>
         <nav v-if="route.path === '/'">
-            <!-- <router-link to="/circle_graphs" class="nav-button">Circle Graph</router-link> -->
+            <router-link to="/circles_v2" class="nav-button">Circle Graph</router-link>
             <router-link to="/circles_final" class="nav-button">Основной экран</router-link>
             <router-link to="/circles_translation" class="nav-button">Трансляция</router-link>
             <div v-for="(value, key) in userData" :key="key">
@@ -45,7 +45,8 @@ nav {
     gap: 15px;
     margin-bottom: 20px;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
+    max-width: 60%;
 }
 
 .nav-button {

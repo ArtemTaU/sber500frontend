@@ -25,19 +25,19 @@ const circleCoordsCalculation = (xArray, yArray, circleSize) => {
     const maxY = Math.max(...yArray);
     const minY = Math.min(...yArray);
 
-    const circleRadius = circleSize / 2.5;
-    const radiusDifference = circleRadius * 0.4;
+    const circleRadius = circleSize / 2.38;
+    const radiusDifference = circleRadius * 0.1;
     // svgTextGap.value = circleRadius;
 
     let pathString = "";
-    pathString += `M ${circleSize / 2 + Math.round(circleRadius * Math.cos(20 * Math.PI / 180 + Math.PI / 2))},${circleSize / 2 + Math.round(circleRadius * Math.sin(20 * Math.PI / 180 + Math.PI / 2))} `;
+    pathString += `M ${circleSize / 2 + Math.round(circleRadius * Math.cos(0 * Math.PI / 180 + Math.PI / 2))},${circleSize / 2 + Math.round(circleRadius * Math.sin(0 * Math.PI / 180 + Math.PI / 2))} `;
 
     const arraysLength = xArray.length;
 
     for (let i = 0; i < arraysLength - 1; i++) {
         const angleStart = (20 + xArray[i] * ((340 - 20) / arraysLength)) * Math.PI / 180 + Math.PI / 2;
         const angleEnd = (20 + xArray[i + 1] * ((340 - 20) / arraysLength)) * Math.PI / 180 + Math.PI / 2;
-        console.log(yArray[i] - minY)
+        
         const radiusStart = circleRadius + ((yArray[i] - minY)/ maxY * radiusDifference);
         const radiusEnd = circleRadius + ((yArray[i + 1] - minY) / maxY * radiusDifference);
 
@@ -58,6 +58,8 @@ const circleCoordsCalculation = (xArray, yArray, circleSize) => {
 
         pathString += `C ${controlX1},${controlY1} ${controlX2},${controlY2} ${xEnd},${yEnd} `;
     }
+
+    pathString += ' Z';
 
     return pathString
 }

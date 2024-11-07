@@ -12,7 +12,7 @@ const imageSrc = new URL('@/assets/images/500Logo.png', import.meta.url).href;
 
 const colorsOfCircles = ['#9001FE', '#063AF3', '#FF036D', '#0BEDDA', '#5201A7', '#FF036D', '#0BEDDA', '#063AF3', '#9001FE', '#DF0367'];
 
-const svgGraphSize = 282;
+const svgGraphSize = 240;
 
 const numCircles = ref(7);
 
@@ -105,14 +105,14 @@ onMounted(async () => {
 .rows {
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 80px;
 }
 
 .upper_row,
 .lower_row {
   display: flex;
   flex-direction: row;
-  gap: 240px;
+  gap: 120px;
   justify-content: center;
 }
 

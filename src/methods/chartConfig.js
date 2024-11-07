@@ -35,7 +35,8 @@ export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120,
       x: {
         display: true,
         suggestedMin: 0,
-        suggestedMax: 150,
+        // suggestedMax: 150,
+        max: 120,
         ticks: {
           color: '#fff',
           font: {
@@ -44,8 +45,8 @@ export function createChartOptions(titleText = '', graphMin = 0, graphMax = 120,
             weight: '400',
           },
           padding: 5,
-          callback: function(value) {
-            return value % 20 === 0 ? value : '';
+          callback: function(value, index, values) {
+            return ''; 
           },
           beginAtZero: true,
           maxRotation: 0,

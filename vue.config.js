@@ -5,3 +5,5 @@ module.exports = defineConfig({
     ? '/sber500frontend/'
     : '/'
 })
+
+

@@ -89,7 +89,7 @@ const getOpacity = computed(() => {
 
 .main_circle {
     border-radius: 50%;
-    border-width: 5px;
+    border-width: 8px;
     border-style: solid;
     position: relative;
     animation: blinkShadow infinite alternate;

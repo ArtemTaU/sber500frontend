@@ -1,27 +1,22 @@
-# 1. Укажите базовый образ. Мы будем использовать node:lts для Node.js.
-FROM node:lts AS build
+FROM node:lts-alpine
 
-# 2. Установите рабочую директорию внутри контейнера.
-WORKDIR /app
+# install simple http server for serving static content
+RUN npm install -g http-server
 
-# 3. Скопируйте package.json и package-lock.json в контейнер и установите зависимости.
+# make the 'app' folder the current working directory
+WORKDIR /sber500frontend
+
+# copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
+
+# install project dependencies
 RUN npm install
 
-# 4. Скопируйте остальную часть вашего проекта в контейнер.
+# copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
-# 5. Соберите приложение Vue.
+# build app for production with minification
 RUN npm run build
 
-# 6. Используйте базовый образ для деплоя.
-FROM nginx:alpine
-
-# 7. Скопируйте файлы сборки в директорию Nginx.
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# 8. Откройте порт 80 для приложения.
-EXPOSE 80
-
-# 9. Запустите Nginx.
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 8080
+CMD [ "http-server", "dist" ]

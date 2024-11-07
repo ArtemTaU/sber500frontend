@@ -8,6 +8,7 @@
             <div class="line_graphs_container">
                 <div class="chart_container">
                     <ChartComponent :chartData="dataForBottomGraph" :chartOptions="bottomGraphOptions" />
+                    <p class="two_minutes"> 2 мин </p>
                 </div>
                 <!-- <div class="chart_container">
                     <ChartComponent :chartData="dataForTopGraph" :chartOptions="topGraphOptions" />
@@ -253,5 +254,13 @@ onMounted(async () => {
     /* Высота подстраивается для сохранения пропорций */
     object-fit: contain;
     /* Контейнер сохраняет пропорции изображения */
+}
+
+.two_minutes {
+    position: absolute;
+    right: 68px;
+    bottom: 122px;
+    font-size: 18px;
+    color: #ffffff;
 }
 </style>

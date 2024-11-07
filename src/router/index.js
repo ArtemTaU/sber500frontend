@@ -3,6 +3,7 @@ import CircleGraphView from '../views/CircleGraphView.vue'
 import LineGraphView from '@/views/LineGraphView.vue'
 import CircleGraphFinal from '@/views/CircleGraphFinal.vue'
 import CircleGraphTranslation from '@/views/CircleGraphTranslation.vue'
+import CircleGraphv2 from '@/views/CircleGraphv2.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,13 @@ const router = createRouter({
       path: '/circles_final',
       name: 'circles_final',
       component: CircleGraphFinal
+    },
+    ,
+    {
+      path: '/circles_v2',
+      name: 'circles_v2',
+      component: CircleGraphv2,
+      props: true
     },
     {
       path: '/circles_translation',

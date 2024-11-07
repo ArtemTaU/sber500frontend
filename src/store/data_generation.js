@@ -16,11 +16,11 @@ function calculateAverages(data) {
 
 
 function circleData() {
-  const arraysLength = 20;
-  const possibility = 0.2; // Вероятность пикового значения
-  const peaksAmplitude = 800; // Максимальное добавочное значение для пика
+  const arraysLength = 60;
+  const possibility = 0.05; // Вероятность пикового значения
+  const peaksAmplitude = 300; // Максимальное добавочное значение для пика
   const minY = 0; // Минимальное значение для y
-  const maxY = 1000; // Максимальное значение для y
+  const maxY = 100; // Максимальное значение для y
 
   const yCoordinates = Array.from({ length: arraysLength }, () => {
     // Если случайное число меньше вероятности, создаем пик выше maxY
